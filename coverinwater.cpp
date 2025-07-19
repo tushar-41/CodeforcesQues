@@ -4,26 +4,27 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-        int n;
-        cin>>n;
-        vector<char> a(n);
+        int n,k;
+        cin>>n>>k;
+        vector<int> a(n);
+        int count = 0;
+        bool flag = true;
         for(int i=0 ; i<n ; i++){
             cin>>a[i];
         }
-        int count = 0;
-        bool isCons = false;
         for(int i=0 ; i<n ; i++){
-            if(a[i] == '.' && (a[i+1] == '.' && i<=n-1) && (a[i+2] == '.' && i<=n-2)){
-                isCons = true;
-                break;
-            }else if(a[i] == '.'){
+            if(a[i] == 1) continue;
+            if(a[i] == 0){
                 count++;
+                if(count>k){
+                    cout<<count<<endl;
+                    flag = false;
+                    break;
+                }
+                if(a[i+2] == 1) continue;
             }
         }
-    if(isCons){
-        cout<<2<<endl;
-    }else{
-        cout<<count<<endl;
+        if(flag) cout<<0<<endl;
     }
-    }
+    return 0;
 }
